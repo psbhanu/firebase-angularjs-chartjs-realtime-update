@@ -1,5 +1,7 @@
 # firebase-angularjs-chartjs-realtime-update
+
 ## Verify that you have PhP installed with your system:
+
 
 ##Start Server (build with PhP & Firebase SDK) (Run Following commands in your Command line / Terminal):
 git clone https://github.com/psbhanu/firebase-angularjs-chartjs-realtime-update.git
