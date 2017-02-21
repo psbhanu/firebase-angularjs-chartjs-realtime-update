@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+			<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-app.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-auth.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-database.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-messaging.js"></script>
+		
+		<!-- Leave out Storage -->
+		<!-- <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-storage.js"></script> -->
+		
+		<!--<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>-->
+		<script>
+			
+			// Initialize Firebase
+			var config = {
+				apiKey: "AIzaSyA42Yct7VLWgnnEEusWuY5tPlFTqFj2F5A",
+				authDomain: "fir-realtime-e9a30.firebaseapp.com",
+				databaseURL: "https://fir-realtime-e9a30.firebaseio.com",
+				storageBucket: "fir-realtime-e9a30.appspot.com",
+				messagingSenderId: "516180830611"
+			};
+			
+			//const DEFAULT_PATH = '/sbts';
+			const DEFAULT_PATH = '/points';
+			
+			var mainFirebaseApp = firebase.initializeApp(config);
+			console.log(mainFirebaseApp);
+			var ref = mainFirebaseApp.database().ref(DEFAULT_PATH); //.getKey('vehicle_unique_id');
+			
+			// Attach an asynchronous callback to read the data at our posts reference
+			ref.on("value", function(snapshot) {
+			  console.log(snapshot.val());
+			}, function (errorObject) {
+			  console.log("The read failed: " + errorObject.code);
+			});
+						
+			/*
+			console.log(ref);
+			console.log(mainFirebaseApp.database().ref(DEFAULT_PATH + '/points').getKey());
+			
+			console.log(ref.orderByKey());
+			
+			ref.orderByKey().equalTo("points").on('value', function(snapshot){
+				console.log(snapshot);
+			});
+			
+			// "value", "child_added", "child_removed", "child_changed", or "child_moved"
+			//var query = str == 'all' ? geoRef : geoRef.orderByChild('category').equalTo(str);
+			
+			console.log(ref.orderByKey());
+			
+			ref.orderByKey().on("child_added", function(snapshot) {
+				console.log(snapshot.key);
+				console.log(snapshot);
+			});
+			
+			ref.equalTo('point').on("child_changed", function(snapshot) {
+				console.log(snapshot.key);
+				console.log(snapshot);
+				//snapshot.forEach(function(){
+				
+				//});
+			});	
+			
+			ref.equalTo('points').on("child_changed", function(snapshot) {
+				console.log(snapshot.key);
+				console.log(snapshot);
+				//snapshot.forEach(function(){
+				
+				//});
+			});	
+			ref.equalTo('point').on("child_changed", function(snapshot) {
+				console.log(snapshot.key);
+				console.log(snapshot);
+				//snapshot.forEach(function(){
+				
+				//});
+			});
+			*/
+		</script>
+		
+		<script>
+			/*
+				// Initialize Firebase
+				var config = {
+				apiKey: "AIzaSyCkyIZURBcO_CS3SMMK_Bc8pO3H9GUriPM",
+				authDomain: "sbts-android-21592.firebaseapp.com",
+				databaseURL: "https://sbts-android-21592.firebaseio.com",
+				storageBucket: "sbts-android-21592.appspot.com",
+				messagingSenderId: "894180561492"
+				};
+				const DEFAULT_PATH = '/sbts';
+				
+				var mainFirebaseApp = firebase.initializeApp(config);
+				var ref = mainFirebaseApp.database().ref(DEFAULT_PATH + '/sbts_vehicle_movement_log'); //.getKey('vehicle_unique_id');
+				//console.log(ref.orderByKey().equalTo("sbts_vehicle_movement_log").on('value'));
+				
+				// "value", "child_added", "child_removed", "child_changed", or "child_moved"
+				//var query = str == 'all' ? geoRef : geoRef.orderByChild('category').equalTo(str);
+				
+				ref.orderByKey().on("child_added", function(snapshot) {
+				console.log(snapshot.key);
+				console.log(snapshot);
+				});
+				ref.equalTo('VCH-0011').on("child_changed", function(snapshot) {
+				console.log(snapshot.key);
+				console.log(snapshot);
+				//snapshot.forEach(function(){
+				
+				//});
+				});
+				//
+				//console.log(data);
+				//DEFAULT_PATH . '/sbts_vehicle_movement_log/vehicle_unique_id'
+			*/
+		</script>
+		
+		
+	</head>
+	<body>
+	</body>
+</html>	
