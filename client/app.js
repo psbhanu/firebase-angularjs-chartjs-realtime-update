@@ -1,8 +1,8 @@
 (function () {
 	'use strict';
-	var app = angular.module('iApp', ['chart.js', 'ui.bootstrap']);
+	var app = angular.module('iApp', ['chart.js', 'ui.bootstrap', 'cgPrompt']);
 	
-	app.controller('ChartCtrl', ['$scope', '$interval', function ($scope, $interval) {
+	app.controller('ChartCtrl', ['$scope', '$interval', 'prompt', function ($scope, $interval, prompt) {
 		var maximum = 100 || document.getElementById('container').clientWidth / 2 || 300;
 		//$scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
 		$scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
@@ -72,14 +72,23 @@
 			$scope.$apply();
 		}
 	
-		var iFirebaseClient = new firebaseClient(function(snapshot){
-			console.log(snapshot.val());
-			$scope.updateLiveChartData (snapshot.val().point);
+		//ask the user for a string
+		prompt({
+			title: 'Enter your ID',
+			input: true,
+		}).then(function(user_id){
+			console.log(user_id);
+			//the promise is resolved with the user input
+			var iFirebaseClient = new firebaseClient(function(snapshot){
+				console.log(snapshot.val());
+				if(snapshot.val() && snapshot.val().hasOwnProperty('point')){
+					$scope.updateLiveChartData (snapshot.val().point);
+				}
+			}, user_id);
 		});
-	
 	}]);
 	
-	var firebaseClient = function(onValue){
+	var firebaseClient = function(onValue, user_id){
 		// Initialize Firebase
 		var config = {
 			apiKey: "AIzaSyA42Yct7VLWgnnEEusWuY5tPlFTqFj2F5A",
@@ -94,7 +103,7 @@
 		
 		var mainFirebaseApp = firebase.initializeApp(config);
 		console.log(mainFirebaseApp);
-		var ref = mainFirebaseApp.database().ref(DEFAULT_PATH); //.getKey('vehicle_unique_id');
+		var ref = mainFirebaseApp.database().ref(DEFAULT_PATH + '/' + user_id); //.getKey('vehicle_unique_id');
 		
 		// Attach an asynchronous callback to read the data at our posts reference
 		/*
