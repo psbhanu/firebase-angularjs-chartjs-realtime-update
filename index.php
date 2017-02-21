@@ -14,7 +14,7 @@ $database = $firebase->getDatabase();
 
 while(true){
 	$newPost = $database->getReference('/points')->set([
-	   'point' => rand(10,1000)
+	   'point' => (!empty($_REQUEST['point']) ? $_REQUEST['point'] : rand(10,1000))
 	]);
 	sleep(1);
 }
