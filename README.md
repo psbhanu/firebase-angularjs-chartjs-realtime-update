@@ -2,7 +2,7 @@
 
 ## Verify that you have PhP installed with your system.
 
-## [Check out Demo](http://demo.psbhanu.com/client)
+## [Check out Demo](http://demo.psbhanu.com/firebase-realtime/client)
 
 
 ##Start Server (build with PhP & Firebase SDK) (Run Following commands in your Command line / Terminal):
