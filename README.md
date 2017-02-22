@@ -16,7 +16,8 @@ php -S localhost:500
 (Keep the Command line / Terminal open & Browse http://localhost:500/ in your web browser)
 
 
-##Start Client (build with AngularJS, Char.js and Firebase Realtime)  (Run Following commands in your Command line / Terminal):
+##Start Client (Optional) (build with AngularJS, Char.js and Firebase Realtime)  (Run Following commands in your Command line / Terminal):
+*Note: You do not need this separate Server, rather you can simply use the same server to access client at your browser by using [http://localhost:500/client](http://localhost:500/client)
 
 cd client
 
