@@ -1,6 +1,7 @@
 # firebase-angularjs-chartjs-realtime-update
 
 ## Verify that you have PhP 7.x installed with your system.
+[For PhP 5.5/5.6 navigate to here](https://github.com/psbhanu/firebase-angularjs-chartjs-realtime-update/tree/php-5.5-5.6)
 
 ## [Check out Demo](http://demo.psbhanu.com/firebase-realtime/client)
 
