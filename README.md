@@ -1,6 +1,6 @@
 # firebase-angularjs-chartjs-realtime-update
 
-## Verify that you have PhP installed with your system.
+## Verify that you have PhP 5.5/5.6 installed with your system.
 
 ## [Check out Demo](http://demo.psbhanu.com/firebase-realtime/client)
 
@@ -15,7 +15,7 @@ php -S localhost:500
 (Keep the Command line / Terminal open & Browse http://localhost:500/ in your web browser)
 
 
-##Start Client (build with AngularJS, Char.js and Socket.io)  (Run Following commands in your Command line / Terminal):
+##Start Client (build with AngularJS, Char.js and Firebase Realtime)  (Run Following commands in your Command line / Terminal):
 
 cd client
 

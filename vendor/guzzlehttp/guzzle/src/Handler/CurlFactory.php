@@ -75,7 +75,6 @@ class CurlFactory implements CurlFactoryInterface
             curl_setopt($resource, CURLOPT_READFUNCTION, null);
             curl_setopt($resource, CURLOPT_WRITEFUNCTION, null);
             curl_setopt($resource, CURLOPT_PROGRESSFUNCTION, null);
-            curl_setopt($resource, CURLOPT_SSL_VERIFYPEER, false);
             curl_reset($resource);
             $this->handles[] = $resource;
         }
@@ -154,12 +153,11 @@ class CurlFactory implements CurlFactoryInterface
     private static function createRejection(EasyHandle $easy, array $ctx)
     {
         static $connectionErrors = [
-            CURLE_OPERATION_TIMEOUTED  	=> true,
-            CURLE_COULDNT_RESOLVE_HOST 	=> true,
-            CURLE_COULDNT_CONNECT      	=> true,
-            CURLE_SSL_CONNECT_ERROR    	=> true,
-            CURLE_GOT_NOTHING          	=> true,
-			CURLOPT_SSL_VERIFYPEER 		=> false,
+            CURLE_OPERATION_TIMEOUTED  => true,
+            CURLE_COULDNT_RESOLVE_HOST => true,
+            CURLE_COULDNT_CONNECT      => true,
+            CURLE_SSL_CONNECT_ERROR    => true,
+            CURLE_GOT_NOTHING          => true,
         ];
 
         // If an exception was encountered during the onHeaders event, then
@@ -200,7 +198,6 @@ class CurlFactory implements CurlFactoryInterface
             CURLOPT_RETURNTRANSFER => false,
             CURLOPT_HEADER         => false,
             CURLOPT_CONNECTTIMEOUT => 150,
-            CURLOPT_SSL_VERIFYPEER => false,
         ];
 
         if (defined('CURLOPT_PROTOCOLS')) {
@@ -321,7 +318,7 @@ class CurlFactory implements CurlFactoryInterface
     {
         $options = $easy->options;
         if (isset($options['verify'])) {
-            if ($options['verify'] === false || true) {
+            if ($options['verify'] === false) {
                 unset($conf[CURLOPT_CAINFO]);
                 $conf[CURLOPT_SSL_VERIFYHOST] = 0;
                 $conf[CURLOPT_SSL_VERIFYPEER] = false;

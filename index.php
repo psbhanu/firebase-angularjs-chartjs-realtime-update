@@ -1,61 +1,29 @@
 <?php
 require 'vendor/autoload.php';
 
-//$firebase = Firebase::fromServiceAccount(__DIR__.'/fir-realtime-e9a30-firebase-adminsdk-ba300-1e97c922b6.json');
-$dateTime = new DateTime();
-//server/saving-data/fireblog/posts
+use Kreait\Firebase\Configuration;
+use Kreait\Firebase\Firebase;
+
+
 $databaseUri 	= 'https://fir-realtime-e9a30.firebaseio.com';
 $secret 		= 'TMNoYQdPXanf3lRRsqNksPwgSzzlA1EEzcdJUFn3';
-$firebase = Firebase::fromDatabaseUriAndSecret($databaseUri, $secret);
 
-$database = $firebase->getDatabase();
+$config = new Configuration();
+$config->setFirebaseSecret($secret);
 
-//$newPost = $database->getReference('/points')->push([ 'point' => 100 ]);
+$firebase = new Firebase($databaseUri, $config);
+$dateTime = new DateTime();
 
 while(true){
-	$newPost = $database->getReference('/points/1')->set([
-	   'point' => rand(10,1000)
-	]);
-	$newPost = $database->getReference('/points/2')->set([
-	   'point' => rand(10,1000)
-	]);
-	$newPost = $database->getReference('/points/3')->set([
-	   'point' => rand(10,1000)
-	]);
-	$newPost = $database->getReference('/points/4')->set([
-	   'point' => rand(10,1000)
-	]);
-	$newPost = $database->getReference('/points/5')->set([
-	   'point' => rand(10,1000)
-	]);
-	$newPost = $database->getReference('/points/100')->set([
-	   'point' => rand(10,1000)
-	]);
-	$newPost = $database->getReference('/points/200')->set([
-	   'point' => rand(10,1000)
-	]);
-	$newPost = $database->getReference('/points/300')->set([
-	   'point' => rand(10,1000)
-	]);
-	$newPost = $database->getReference('/points/400')->set([
-	   'point' => rand(10,1000)
-	]);
-	$newPost = $database->getReference('/points/500')->set([
-	   'point' => rand(10,1000)
-	]);
+	$firebase->set([ 'point' => rand(10,1000) ], '/points/1');
+	$firebase->set([ 'point' => rand(10,1000) ], '/points/2');
+	$firebase->set([ 'point' => rand(10,1000) ], '/points/3');
+	$firebase->set([ 'point' => rand(10,1000) ], '/points/4');
+	$firebase->set([ 'point' => rand(10,1000) ], '/points/5');
+	$firebase->set([ 'point' => rand(10,1000) ], '/points/100');
+	$firebase->set([ 'point' => rand(10,1000) ], '/points/200');
+	$firebase->set([ 'point' => rand(10,1000) ], '/points/300');
+	$firebase->set([ 'point' => rand(10,1000) ], '/points/400');
+	$firebase->set([ 'point' => rand(10,1000) ], '/points/500');
 	sleep(1);
 }
-
-
-//$db->getReference('config/website/name')->set('New name');
-
-//$firebase->set(DEFAULT_PATH . '/' . $dateTime->format('c'), $test);
-
-print_r($newPost);
-
-//$newPost->getKey(); // => -KVr5eu8gcTv7_AHb-3-
-//$newPost->getUri(); // => https://my-project.firebaseio.com/blog/posts/-KVr5eu8gcTv7_AHb-3-
-
-//$newPost->getChild('title')->set('Changed post title');
-//$newPost->getValue(); // Fetches the data from the realtime database
-//$newPost->remove();

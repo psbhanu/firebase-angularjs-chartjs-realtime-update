@@ -39,26 +39,6 @@
 			}
 		};
 		
-		// Update the dataset at 25FPS for a smoothly-animating chart
-		//$interval(function () {
-		//getLiveChartData();
-		//}, 800);
-	
-		//$interval(function () {}, 0);
-	
-		//$scope.labels = [];
-		function getLiveChartData () {
-			if ($scope.data[0].length) {
-				$scope.labels = $scope.labels.slice(1);
-				$scope.data[0] = $scope.data[0].slice(1);
-			}
-			
-			while ($scope.data[0].length < maximum) {
-				$scope.labels.push('');
-				$scope.data[0].push(getRandomValue($scope.data[0]));
-			}
-		}
-	
 		$scope.updateLiveChartData = function (data) {
 			if ($scope.data[0].length) {
 				$scope.labels = $scope.labels.slice(1);
@@ -88,6 +68,7 @@
 		});
 	}]);
 	
+	// Firebase Client Class
 	var firebaseClient = function(onValue, user_id){
 		// Initialize Firebase
 		var config = {
@@ -98,21 +79,11 @@
 			messagingSenderId: "516180830611"
 		};
 		
-		//const DEFAULT_PATH = '/sbts';
 		const DEFAULT_PATH = '/points';
 		
 		var mainFirebaseApp = firebase.initializeApp(config);
 		console.log(mainFirebaseApp);
-		var ref = mainFirebaseApp.database().ref(DEFAULT_PATH + '/' + user_id); //.getKey('vehicle_unique_id');
-		
-		// Attach an asynchronous callback to read the data at our posts reference
-		/*
-		ref.on("value", function(snapshot) {
-			console.log(snapshot.val());
-			}, function (errorObject) {
-			console.log("The read failed: " + errorObject.code);
-		});
-		*/
+		var ref = mainFirebaseApp.database().ref(DEFAULT_PATH + '/' + user_id);
 		
 		this.onValue = onValue || function(snapshot) {
 			console.log(snapshot.val());
@@ -124,10 +95,4 @@
 		
 		ref.on("value", this.onValue, this.onError);
 	};
-	
-	function getRandomValue (data) {
-		var l = data.length, previous = l ? data[l - 1] : 50;
-		var y = previous + Math.random() * 10 - 5;
-		return y < 0 ? 0 : y > 100 ? 100 : y;
-	}
-	})();		
+})();		
