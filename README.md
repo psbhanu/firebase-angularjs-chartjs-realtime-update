@@ -10,6 +10,8 @@ git clone https://github.com/psbhanu/firebase-angularjs-chartjs-realtime-update.
 
 cd firebase-angularjs-chartjs-realtime-update
 
+git checkout php-5.5-5.6
+
 php -S localhost:500
 
 (Keep the Command line / Terminal open & Browse http://localhost:500/ in your web browser)
